@@ -1,1 +1,0 @@
-https://www.w3schools.com/html/html5_draganddrop.asp // https://github.com/ysh-rael/drag-drop_card // https://themeselection.com/blog/drag-and-drop-library/?srsltid=AfmBOorRV0qKmF29zCy14tPu_xWinOiXGDojUeeAb4DTN67EvjUrji54 Aca referencias interesantes
