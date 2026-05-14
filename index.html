@@ -345,7 +345,7 @@
 			background: linear-gradient(145deg, #1a365d, #2563eb);
 			border-radius: 12px;
 			box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 0 2px rgba(255,255,255,0.1);
-			z-index: 1001;
+			z-index: 9999999;
 			opacity: 0;
 			transform: translateY(20px) scale(0.95);
 			transition: opacity 0.3s ease, transform 0.3s ease;
@@ -829,7 +829,13 @@
 
 		// Player Preview Functions
 		function showPlayerPreview(player) {
+			console.log('Showing preview for:', player);
 			const preview = document.getElementById('playerPreview');
+			if (!preview) {
+				console.error('Preview element not found');
+				return;
+			}
+			
 			const previewImage = document.getElementById('previewImage');
 			const previewFlag = document.getElementById('previewFlag');
 			const previewCountry = document.getElementById('previewCountry');
@@ -852,12 +858,16 @@
 
 			// Show preview with animation
 			preview.classList.add('active');
+			console.log('Preview activated');
 		}
 
 		function hidePlayerPreview() {
+			console.log('Hiding preview');
 			const preview = document.getElementById('playerPreview');
-			preview.classList.remove('active');
-			currentPreviewPlayer = null;
+			if (preview) {
+				preview.classList.remove('active');
+				currentPreviewPlayer = null;
+			}
 		}
 
 		// Initialize
