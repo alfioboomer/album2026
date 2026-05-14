@@ -54,20 +54,20 @@
 	
 	<style>
 		.drag-drop-overlay {
-			position: fixed;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			background: rgba(0, 0, 0, 0.85);
-			z-index: 999999;
-			display: none;
+			position: fixed !important;
+			top: 0 !important;
+			left: 0 !important;
+			width: 100% !important;
+			height: 100% !important;
+			background: rgba(0, 0, 0, 0.95) !important;
+			z-index: 2147483647 !important;
+			display: none !important;
 		}
 
 		.drag-drop-overlay.active {
-			display: flex;
-			align-items: center;
-			justify-content: center;
+			display: flex !important;
+			align-items: center !important;
+			justify-content: center !important;
 		}
 
 		.drag-drop-panel {
@@ -80,6 +80,8 @@
 			display: flex;
 			flex-direction: column;
 			box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+			position: relative;
+			z-index: 2147483648;
 		}
 
 		.drag-drop-header {
