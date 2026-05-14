@@ -53,35 +53,30 @@
 	</script>
 	
 	<style>
-		.drag-drop-overlay {
-			position: fixed !important;
-			top: 0 !important;
-			left: 0 !important;
-			width: 100% !important;
-			height: 100% !important;
-			background: rgba(0, 0, 0, 0.95) !important;
-			z-index: 2147483647 !important;
-			display: none !important;
+		.drag-drop-container {
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			height: 300px;
+			background: white;
+			border-top: 3px solid #667eea;
+			z-index: 999999;
+			display: none;
+			flex-direction: column;
+			box-shadow: 0 -5px 20px rgba(0,0,0,0.3);
 		}
 
-		.drag-drop-overlay.active {
-			display: flex !important;
-			align-items: center !important;
-			justify-content: center !important;
+		.drag-drop-container.active {
+			display: flex;
 		}
 
 		.drag-drop-panel {
-			width: 95%;
-			max-width: 1200px;
-			max-height: 85vh;
+			width: 100%;
+			height: 100%;
 			background: white;
-			border-radius: 12px;
-			overflow: hidden;
 			display: flex;
 			flex-direction: column;
-			box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-			position: relative;
-			z-index: 2147483648;
 		}
 
 		.drag-drop-header {
@@ -341,6 +336,151 @@
 			display: block;
 		}
 
+		/* Player Preview Panel */
+		.player-preview {
+			position: fixed;
+			bottom: 90px;
+			left: 20px;
+			width: 180px;
+			background: linear-gradient(145deg, #1a365d, #2563eb);
+			border-radius: 12px;
+			box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 0 2px rgba(255,255,255,0.1);
+			z-index: 1001;
+			opacity: 0;
+			transform: translateY(20px) scale(0.95);
+			transition: opacity 0.3s ease, transform 0.3s ease;
+			pointer-events: none;
+			overflow: hidden;
+		}
+
+		.player-preview.active {
+			opacity: 1;
+			transform: translateY(0) scale(1);
+			pointer-events: auto;
+		}
+
+		.player-preview-header {
+			background: linear-gradient(135deg, #fbbf24, #f59e0b);
+			padding: 6px 10px;
+			display: flex;
+			align-items: center;
+			gap: 8px;
+		}
+
+		.player-preview-country-flag {
+			width: 24px;
+			height: 16px;
+			border-radius: 2px;
+			object-fit: cover;
+			box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+		}
+
+		.player-preview-country {
+			color: #1a365d;
+			font-size: 11px;
+			font-weight: bold;
+			text-transform: uppercase;
+			letter-spacing: 0.5px;
+		}
+
+		.player-preview-image-container {
+			position: relative;
+			width: 100%;
+			height: 200px;
+			background: linear-gradient(180deg, #1e40af 0%, #3b82f6 50%, #60a5fa 100%);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			overflow: hidden;
+		}
+
+		.player-preview-image-container::before {
+			content: '';
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			height: 40%;
+			background: linear-gradient(to top, rgba(0,0,0,0.3), transparent);
+		}
+
+		.player-preview-image {
+			width: 100%;
+			height: 100%;
+			object-fit: contain;
+			position: relative;
+			z-index: 1;
+		}
+
+		.player-preview-info {
+			background: #1e3a5f;
+			padding: 10px;
+			text-align: center;
+		}
+
+		.player-preview-number {
+			display: inline-block;
+			background: #fbbf24;
+			color: #1a365d;
+			font-size: 12px;
+			font-weight: bold;
+			padding: 2px 8px;
+			border-radius: 3px;
+			margin-bottom: 6px;
+		}
+
+		.player-preview-name {
+			color: white;
+			font-size: 14px;
+			font-weight: bold;
+			text-transform: uppercase;
+			letter-spacing: 0.5px;
+			margin-bottom: 4px;
+			text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+		}
+
+		.player-preview-team {
+			color: rgba(255,255,255,0.7);
+			font-size: 10px;
+			text-transform: uppercase;
+			letter-spacing: 1px;
+		}
+
+		.player-preview-badge {
+			position: absolute;
+			top: 8px;
+			right: 8px;
+			width: 40px;
+			height: 40px;
+			background: white;
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+			z-index: 2;
+		}
+
+		.player-preview-badge img {
+			width: 28px;
+			height: 28px;
+			object-fit: contain;
+		}
+
+		.player-preview-panini {
+			position: absolute;
+			bottom: 8px;
+			left: 8px;
+			background: rgba(0,0,0,0.6);
+			color: white;
+			font-size: 8px;
+			font-weight: bold;
+			padding: 3px 6px;
+			border-radius: 3px;
+			letter-spacing: 1px;
+			z-index: 2;
+		}
+
 		.stats {
 			background: white;
 			padding: 10px;
@@ -358,7 +498,27 @@
 
 	<button class="drag-drop-toggle" onclick="toggleDragDrop()">🏆</button>
 
-	<div class="drag-drop-overlay" id="dragDropOverlay">
+	<!-- Player Preview Panel -->
+	<div class="player-preview" id="playerPreview">
+		<div class="player-preview-header">
+			<img class="player-preview-country-flag" id="previewFlag" src="" alt="Flag">
+			<span class="player-preview-country" id="previewCountry">ARGENTINA</span>
+		</div>
+		<div class="player-preview-image-container">
+			<img class="player-preview-image" id="previewImage" src="" alt="Player">
+			<div class="player-preview-badge">
+				<img src="files/extfile/htmlIcon.png" alt="Badge">
+			</div>
+			<span class="player-preview-panini">PANINI</span>
+		</div>
+		<div class="player-preview-info">
+			<span class="player-preview-number" id="previewNumber">ARG 01</span>
+			<div class="player-preview-name" id="previewName">Jugador</div>
+			<div class="player-preview-team" id="previewTeam">Seleccion Nacional</div>
+		</div>
+	</div>
+
+	<div class="drag-drop-container" id="dragDropContainer">
 		<div class="drag-drop-panel">
 			<div class="drag-drop-header">
 				<h2>🏆 Album Mundial 2026 - Drag & Drop</h2>
@@ -411,10 +571,52 @@
 
 		let currentPlayers = [];
 		let albumSlots = Array(9).fill(null);
+		let currentPreviewPlayer = null;
+
+		// Country flag mapping (using country codes for flag emojis)
+		const countryFlags = {
+			'ALEMANIA': 'https://flagcdn.com/w40/de.png',
+			'ARGENTINA': 'https://flagcdn.com/w40/ar.png',
+			'BRASIL': 'https://flagcdn.com/w40/br.png',
+			'COLOMBIA': 'https://flagcdn.com/w40/co.png',
+			'CROACIA': 'https://flagcdn.com/w40/hr.png',
+			'ECUADOR': 'https://flagcdn.com/w40/ec.png',
+			'ESPAÑA': 'https://flagcdn.com/w40/es.png',
+			'FRANCIA': 'https://flagcdn.com/w40/fr.png',
+			'HOLANDA': 'https://flagcdn.com/w40/nl.png',
+			'INGLATERRA': 'https://flagcdn.com/w40/gb-eng.png',
+			'MARRUECOS': 'https://flagcdn.com/w40/ma.png',
+			'MEXICO': 'https://flagcdn.com/w40/mx.png',
+			'NORUEGA': 'https://flagcdn.com/w40/no.png',
+			'PORTUGAL': 'https://flagcdn.com/w40/pt.png',
+			'URUGUAY': 'https://flagcdn.com/w40/uy.png',
+			'COCA_COLA': 'https://flagcdn.com/w40/us.png',
+			'NEYMAR': 'https://flagcdn.com/w40/br.png'
+		};
+
+		const countryCodes = {
+			'ALEMANIA': 'GER',
+			'ARGENTINA': 'ARG',
+			'BRASIL': 'BRA',
+			'COLOMBIA': 'COL',
+			'CROACIA': 'CRO',
+			'ECUADOR': 'ECU',
+			'ESPAÑA': 'ESP',
+			'FRANCIA': 'FRA',
+			'HOLANDA': 'NED',
+			'INGLATERRA': 'ENG',
+			'MARRUECOS': 'MAR',
+			'MEXICO': 'MEX',
+			'NORUEGA': 'NOR',
+			'PORTUGAL': 'POR',
+			'URUGUAY': 'URU',
+			'COCA_COLA': 'CC',
+			'NEYMAR': 'NEY'
+		};
 
 		function toggleDragDrop() {
-			const overlay = document.getElementById('dragDropOverlay');
-			overlay.classList.toggle('active');
+			const container = document.getElementById('dragDropContainer');
+			container.classList.toggle('active');
 		}
 
 		function populateCountrySelect() {
@@ -443,6 +645,27 @@
 				if (albumSlots[i]) {
 					slot.classList.add('occupied');
 					slot.innerHTML = `<img src="${albumSlots[i].image}" alt="Jugador" onerror="this.style.display='none'; this.parentElement.innerHTML='<p style=\\'font-size: 9px; text-align: center; color: #999;\\'>Error</p>'"><button class="remove-btn" onclick="removeFromAlbum(${i})">×</button>`;
+					
+					// Add hover preview for occupied slots
+					const slotData = albumSlots[i];
+					slot.addEventListener('mouseenter', () => {
+						const player = currentPlayers.find(p => p.id === slotData.playerId);
+						if (player) {
+							showPlayerPreview(player);
+						} else {
+							// Create a minimal player object for preview if not in currentPlayers
+							const parts = slotData.playerId.split('_');
+							const country = parts.slice(0, -1).join('_');
+							const num = parts[parts.length - 1];
+							showPlayerPreview({
+								id: slotData.playerId,
+								name: `Jugador ${parseInt(num)}`,
+								image: slotData.image,
+								country: country
+							});
+						}
+					});
+					slot.addEventListener('mouseleave', hidePlayerPreview);
 				} else {
 					slot.innerHTML = `<span class="slot-number">${i + 1}</span>`;
 				}
@@ -508,6 +731,17 @@
 				
 				card.addEventListener('dragstart', handleDragStart);
 				card.addEventListener('dragend', handleDragEnd);
+				
+				// Add hover events for player preview
+				card.addEventListener('mouseenter', () => showPlayerPreview(player));
+				card.addEventListener('mouseleave', hidePlayerPreview);
+				
+				// Add click event for mobile support
+				card.addEventListener('click', (e) => {
+					if (!e.target.classList.contains('dragging')) {
+						showPlayerPreview(player);
+					}
+				});
 				
 				grid.appendChild(card);
 			});
@@ -593,7 +827,40 @@
 			document.getElementById('albumCount').textContent = occupied;
 		}
 
-		// Inicializar
+		// Player Preview Functions
+		function showPlayerPreview(player) {
+			const preview = document.getElementById('playerPreview');
+			const previewImage = document.getElementById('previewImage');
+			const previewFlag = document.getElementById('previewFlag');
+			const previewCountry = document.getElementById('previewCountry');
+			const previewNumber = document.getElementById('previewNumber');
+			const previewName = document.getElementById('previewName');
+			const previewTeam = document.getElementById('previewTeam');
+
+			currentPreviewPlayer = player;
+
+			// Set preview data
+			previewImage.src = player.image;
+			previewFlag.src = countryFlags[player.country] || countryFlags['ARGENTINA'];
+			previewCountry.textContent = player.country.replace(/_/g, ' ');
+			
+			const countryCode = countryCodes[player.country] || player.country.substring(0, 3).toUpperCase();
+			const playerNum = player.id.split('_').pop();
+			previewNumber.textContent = `${countryCode} ${playerNum}`;
+			previewName.textContent = player.name;
+			previewTeam.textContent = 'Seleccion Nacional';
+
+			// Show preview with animation
+			preview.classList.add('active');
+		}
+
+		function hidePlayerPreview() {
+			const preview = document.getElementById('playerPreview');
+			preview.classList.remove('active');
+			currentPreviewPlayer = null;
+		}
+
+		// Initialize
 		document.addEventListener('DOMContentLoaded', () => {
 			populateCountrySelect();
 			generateAlbumSlots();
