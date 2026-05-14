@@ -339,164 +339,184 @@
 			display: block;
 		}
 
-		/* Player Preview Panel */
-		.player-preview {
-			position: fixed !important;
-			bottom: 90px !important;
-			left: 20px !important;
-			width: 180px !important;
-			max-width: 180px !important;
-			height: auto !important;
-			max-height: 320px !important;
-			background: linear-gradient(145deg, #1a365d, #2563eb) !important;
-			border-radius: 12px !important;
-			box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 0 2px rgba(255,255,255,0.1) !important;
-			z-index: 9999 !important;
-			opacity: 0;
-			visibility: hidden;
-			transform: translateY(20px) scale(0.95);
-			transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
-			pointer-events: none;
-			overflow: hidden !important;
-		}
-
-		.player-preview.active {
-			opacity: 1;
-			visibility: visible;
-			transform: translateY(0) scale(1);
-			pointer-events: auto;
-		}
-
-		.player-preview-header {
-			background: linear-gradient(135deg, #fbbf24, #f59e0b) !important;
-			padding: 6px 10px !important;
-			display: flex !important;
-			align-items: center !important;
-			gap: 8px !important;
-			height: auto !important;
-			width: 100% !important;
-			box-sizing: border-box !important;
-		}
-
-		.player-preview-country-flag {
-			width: 24px !important;
-			height: 16px !important;
-			min-width: 24px !important;
-			border-radius: 2px !important;
-			object-fit: cover !important;
-			box-shadow: 0 1px 3px rgba(0,0,0,0.3) !important;
-		}
-
-		.player-preview-country {
-			color: #1a365d !important;
-			font-size: 11px !important;
-			font-weight: bold !important;
-			text-transform: uppercase !important;
-			letter-spacing: 0.5px !important;
-		}
-
-		.player-preview-image-container {
-			position: relative !important;
-			width: 100% !important;
-			height: 180px !important;
-			max-height: 180px !important;
-			background: linear-gradient(180deg, #1e40af 0%, #3b82f6 50%, #60a5fa 100%) !important;
-			display: flex !important;
-			align-items: center !important;
-			justify-content: center !important;
-			overflow: hidden !important;
-		}
-
-		.player-preview-image-container::before {
-			content: '';
-			position: absolute;
+		/* Footer Player Gallery */
+		.footer-gallery {
+			position: fixed;
 			bottom: 0;
 			left: 0;
 			right: 0;
-			height: 40%;
-			background: linear-gradient(to top, rgba(0,0,0,0.3), transparent);
-			z-index: 1;
+			height: 70px;
+			background: rgba(30, 30, 30, 0.95);
+			z-index: 998;
+			display: flex;
+			align-items: center;
+			padding: 0 10px;
+			gap: 10px;
+			border-top: 1px solid rgba(255,255,255,0.1);
 		}
 
-		.player-preview-image {
-			width: 100% !important;
-			height: 100% !important;
-			max-width: 100% !important;
-			max-height: 100% !important;
-			object-fit: contain !important;
-			position: relative !important;
-			z-index: 0 !important;
+		.footer-gallery-nav {
+			background: rgba(255,255,255,0.1);
+			border: none;
+			color: white;
+			width: 28px;
+			height: 28px;
+			border-radius: 4px;
+			cursor: pointer;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-shrink: 0;
 		}
 
-		.player-preview-info {
-			background: #1e3a5f !important;
-			padding: 10px !important;
-			text-align: center !important;
-			width: 100% !important;
-			box-sizing: border-box !important;
+		.footer-gallery-nav:hover {
+			background: rgba(255,255,255,0.2);
 		}
 
-		.player-preview-number {
-			display: inline-block !important;
-			background: #fbbf24 !important;
-			color: #1a365d !important;
-			font-size: 12px !important;
-			font-weight: bold !important;
-			padding: 2px 8px !important;
-			border-radius: 3px !important;
-			margin-bottom: 6px !important;
+		.footer-gallery-scroll {
+			display: flex;
+			gap: 8px;
+			overflow-x: auto;
+			flex: 1;
+			padding: 5px 0;
+			scroll-behavior: smooth;
 		}
 
-		.player-preview-name {
-			color: white !important;
-			font-size: 14px !important;
-			font-weight: bold !important;
-			text-transform: uppercase !important;
-			letter-spacing: 0.5px !important;
-			margin-bottom: 4px !important;
-			text-shadow: 0 1px 2px rgba(0,0,0,0.3) !important;
+		.footer-gallery-scroll::-webkit-scrollbar {
+			height: 4px;
 		}
 
-		.player-preview-team {
-			color: rgba(255,255,255,0.7) !important;
-			font-size: 10px !important;
-			text-transform: uppercase !important;
-			letter-spacing: 1px !important;
+		.footer-gallery-scroll::-webkit-scrollbar-track {
+			background: rgba(255,255,255,0.1);
+			border-radius: 2px;
 		}
 
-		.player-preview-badge {
-			position: absolute !important;
-			top: 8px !important;
-			right: 8px !important;
-			width: 32px !important;
-			height: 32px !important;
-			background: white !important;
-			border-radius: 50% !important;
-			display: flex !important;
-			align-items: center !important;
-			justify-content: center !important;
-			box-shadow: 0 2px 8px rgba(0,0,0,0.3) !important;
-			z-index: 2 !important;
+		.footer-gallery-scroll::-webkit-scrollbar-thumb {
+			background: rgba(255,255,255,0.3);
+			border-radius: 2px;
 		}
 
-		.player-preview-badge img {
-			width: 22px !important;
-			height: 22px !important;
-			object-fit: contain !important;
+		.footer-gallery-item {
+			width: 50px;
+			height: 60px;
+			flex-shrink: 0;
+			border-radius: 4px;
+			overflow: hidden;
+			cursor: pointer;
+			border: 2px solid transparent;
+			transition: border-color 0.2s, transform 0.2s;
+			background: #1a1a1a;
 		}
 
-		.player-preview-panini {
-			position: absolute !important;
-			bottom: 8px !important;
-			left: 8px !important;
-			background: rgba(0,0,0,0.6) !important;
-			color: white !important;
-			font-size: 8px !important;
-			font-weight: bold !important;
-			padding: 3px 6px !important;
-			border-radius: 3px !important;
-			letter-spacing: 1px !important;
-			z-index: 2 !important;
+		.footer-gallery-item:hover {
+			border-color: #3b82f6;
+			transform: scale(1.05);
+		}
+
+		.footer-gallery-item.selected {
+			border-color: #fbbf24;
+		}
+
+		.footer-gallery-item img {
+			width: 100%;
+			height: 100%;
+			object-fit: contain;
+		}
+
+		/* Player Preview Card (floating) */
+		.player-preview-card {
+			position: fixed;
+			bottom: 80px;
+			left: 20px;
+			width: 140px;
+			background: linear-gradient(145deg, #0f172a, #1e3a8a);
+			border-radius: 8px;
+			box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+			z-index: 999;
+			opacity: 0;
+			visibility: hidden;
+			transform: translateY(10px);
+			transition: all 0.25s ease;
+			overflow: hidden;
+		}
+
+		.player-preview-card.active {
+			opacity: 1;
+			visibility: visible;
+			transform: translateY(0);
+		}
+
+		.player-preview-card-header {
+			background: linear-gradient(135deg, #fbbf24, #f59e0b);
+			padding: 4px 8px;
+			display: flex;
+			align-items: center;
+			gap: 6px;
+		}
+
+		.player-preview-card-flag {
+			width: 20px;
+			height: 14px;
+			border-radius: 2px;
+			object-fit: cover;
+		}
+
+		.player-preview-card-country {
+			color: #1a365d;
+			font-size: 9px;
+			font-weight: bold;
+			text-transform: uppercase;
+		}
+
+		.player-preview-card-image {
+			width: 100%;
+			height: 140px;
+			background: linear-gradient(180deg, #1e40af 0%, #3b82f6 100%);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			position: relative;
+		}
+
+		.player-preview-card-image img {
+			width: 100%;
+			height: 100%;
+			object-fit: contain;
+		}
+
+		.player-preview-card-info {
+			background: #0f172a;
+			padding: 8px;
+			text-align: center;
+		}
+
+		.player-preview-card-number {
+			display: inline-block;
+			background: #fbbf24;
+			color: #1a365d;
+			font-size: 10px;
+			font-weight: bold;
+			padding: 2px 6px;
+			border-radius: 3px;
+			margin-bottom: 4px;
+		}
+
+		.player-preview-card-name {
+			color: white;
+			font-size: 11px;
+			font-weight: bold;
+			text-transform: uppercase;
+		}
+
+		.player-preview-card-panini {
+			position: absolute;
+			bottom: 4px;
+			left: 4px;
+			background: rgba(0,0,0,0.7);
+			color: white;
+			font-size: 7px;
+			padding: 2px 4px;
+			border-radius: 2px;
 		}
 
 		.stats {
@@ -516,23 +536,28 @@
 
 	<button class="drag-drop-toggle" onclick="toggleDragDrop()">🏆</button>
 
-	<!-- Player Preview Panel -->
-	<div class="player-preview" id="playerPreview">
-		<div class="player-preview-header">
-			<img class="player-preview-country-flag" id="previewFlag" src="" alt="Flag">
-			<span class="player-preview-country" id="previewCountry">ARGENTINA</span>
+	<!-- Footer Player Gallery -->
+	<div class="footer-gallery" id="footerGallery">
+		<button class="footer-gallery-nav" onclick="scrollGallery(-200)">&#10094;</button>
+		<div class="footer-gallery-scroll" id="galleryScroll">
+			<!-- Players loaded here -->
 		</div>
-		<div class="player-preview-image-container">
-			<img class="player-preview-image" id="previewImage" src="" alt="Player">
-			<div class="player-preview-badge">
-				<img src="files/extfile/htmlIcon.png" alt="Badge">
-			</div>
-			<span class="player-preview-panini">PANINI</span>
+		<button class="footer-gallery-nav" onclick="scrollGallery(200)">&#10095;</button>
+	</div>
+
+	<!-- Player Preview Card -->
+	<div class="player-preview-card" id="playerPreviewCard">
+		<div class="player-preview-card-header">
+			<img class="player-preview-card-flag" id="previewCardFlag" src="" alt="Flag">
+			<span class="player-preview-card-country" id="previewCardCountry">ARGENTINA</span>
 		</div>
-		<div class="player-preview-info">
-			<span class="player-preview-number" id="previewNumber">ARG 01</span>
-			<div class="player-preview-name" id="previewName">Jugador</div>
-			<div class="player-preview-team" id="previewTeam">Seleccion Nacional</div>
+		<div class="player-preview-card-image">
+			<img id="previewCardImage" src="" alt="Player">
+			<span class="player-preview-card-panini">PANINI</span>
+		</div>
+		<div class="player-preview-card-info">
+			<span class="player-preview-card-number" id="previewCardNumber">ARG 01</span>
+			<div class="player-preview-card-name" id="previewCardName">Jugador</div>
 		</div>
 	</div>
 
@@ -663,27 +688,6 @@
 				if (albumSlots[i]) {
 					slot.classList.add('occupied');
 					slot.innerHTML = `<img src="${albumSlots[i].image}" alt="Jugador" onerror="this.style.display='none'; this.parentElement.innerHTML='<p style=\\'font-size: 9px; text-align: center; color: #999;\\'>Error</p>'"><button class="remove-btn" onclick="removeFromAlbum(${i})">×</button>`;
-					
-					// Add hover preview for occupied slots
-					const slotData = albumSlots[i];
-					slot.addEventListener('mouseenter', () => {
-						const player = currentPlayers.find(p => p.id === slotData.playerId);
-						if (player) {
-							showPlayerPreview(player);
-						} else {
-							// Create a minimal player object for preview if not in currentPlayers
-							const parts = slotData.playerId.split('_');
-							const country = parts.slice(0, -1).join('_');
-							const num = parts[parts.length - 1];
-							showPlayerPreview({
-								id: slotData.playerId,
-								name: `Jugador ${parseInt(num)}`,
-								image: slotData.image,
-								country: country
-							});
-						}
-					});
-					slot.addEventListener('mouseleave', hidePlayerPreview);
 				} else {
 					slot.innerHTML = `<span class="slot-number">${i + 1}</span>`;
 				}
@@ -749,17 +753,6 @@
 				
 				card.addEventListener('dragstart', handleDragStart);
 				card.addEventListener('dragend', handleDragEnd);
-				
-				// Add hover events for player preview
-				card.addEventListener('mouseenter', () => showPlayerPreview(player));
-				card.addEventListener('mouseleave', hidePlayerPreview);
-				
-				// Add click event for mobile support
-				card.addEventListener('click', (e) => {
-					if (!e.target.classList.contains('dragging')) {
-						showPlayerPreview(player);
-					}
-				});
 				
 				grid.appendChild(card);
 			});
@@ -847,13 +840,12 @@
 
 		// Player Preview Functions
 		function showPlayerPreview(player) {
-			const preview = document.getElementById('playerPreview');
-			const previewImage = document.getElementById('previewImage');
-			const previewFlag = document.getElementById('previewFlag');
-			const previewCountry = document.getElementById('previewCountry');
-			const previewNumber = document.getElementById('previewNumber');
-			const previewName = document.getElementById('previewName');
-			const previewTeam = document.getElementById('previewTeam');
+			const preview = document.getElementById('playerPreviewCard');
+			const previewImage = document.getElementById('previewCardImage');
+			const previewFlag = document.getElementById('previewCardFlag');
+			const previewCountry = document.getElementById('previewCardCountry');
+			const previewNumber = document.getElementById('previewCardNumber');
+			const previewName = document.getElementById('previewCardName');
 
 			currentPreviewPlayer = player;
 
@@ -866,16 +858,81 @@
 			const playerNum = player.id.split('_').pop();
 			previewNumber.textContent = `${countryCode} ${playerNum}`;
 			previewName.textContent = player.name;
-			previewTeam.textContent = 'Seleccion Nacional';
 
 			// Show preview with animation
 			preview.classList.add('active');
 		}
 
 		function hidePlayerPreview() {
-			const preview = document.getElementById('playerPreview');
+			const preview = document.getElementById('playerPreviewCard');
 			preview.classList.remove('active');
 			currentPreviewPlayer = null;
+		}
+
+		// Footer Gallery Functions
+		let galleryPlayers = [];
+		let selectedGalleryPlayer = null;
+
+		function scrollGallery(amount) {
+			const scroll = document.getElementById('galleryScroll');
+			scroll.scrollBy({ left: amount, behavior: 'smooth' });
+		}
+
+		function loadFooterGallery(country) {
+			const scroll = document.getElementById('galleryScroll');
+			scroll.innerHTML = '';
+			galleryPlayers = [];
+
+			const playersPath = `Jugadores_Extraidos_incompletos/${country}/`;
+			
+			for (let i = 1; i <= 18; i++) {
+				const playerNum = String(i).padStart(4, '0');
+				const imagePath = `${playersPath}jugador_${playerNum}.png`;
+				
+				const player = {
+					id: `${country}_${playerNum}`,
+					name: `Jugador ${i}`,
+					image: imagePath,
+					country: country
+				};
+				galleryPlayers.push(player);
+
+				const item = document.createElement('div');
+				item.className = 'footer-gallery-item';
+				item.dataset.playerId = player.id;
+				
+				const img = document.createElement('img');
+				img.src = imagePath;
+				img.alt = player.name;
+				img.onerror = function() { this.style.opacity = '0.3'; };
+				
+				item.appendChild(img);
+				
+				item.addEventListener('mouseenter', () => showPlayerPreview(player));
+				item.addEventListener('mouseleave', hidePlayerPreview);
+				item.addEventListener('click', () => selectGalleryPlayer(player, item));
+				
+				scroll.appendChild(item);
+			}
+		}
+
+		function selectGalleryPlayer(player, element) {
+			// Remove selected from all items
+			document.querySelectorAll('.footer-gallery-item').forEach(item => {
+				item.classList.remove('selected');
+			});
+			
+			// Add selected to clicked item
+			element.classList.add('selected');
+			selectedGalleryPlayer = player;
+			
+			// Keep preview visible
+			showPlayerPreview(player);
+		}
+
+		// Initialize footer gallery with Argentina by default
+		function initFooterGallery() {
+			loadFooterGallery('ARGENTINA');
 		}
 
 		// Initialize
@@ -883,6 +940,7 @@
 			populateCountrySelect();
 			generateAlbumSlots();
 			loadAlbum();
+			initFooterGallery();
 		});
 	</script>
 
