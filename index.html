@@ -341,60 +341,70 @@
 
 		/* Player Preview Panel */
 		.player-preview {
-			position: fixed;
-			bottom: 90px;
-			left: 20px;
-			width: 180px;
-			background: linear-gradient(145deg, #1a365d, #2563eb);
-			border-radius: 12px;
-			box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 0 2px rgba(255,255,255,0.1);
-			z-index: 1001;
+			position: fixed !important;
+			bottom: 90px !important;
+			left: 20px !important;
+			width: 180px !important;
+			max-width: 180px !important;
+			height: auto !important;
+			max-height: 320px !important;
+			background: linear-gradient(145deg, #1a365d, #2563eb) !important;
+			border-radius: 12px !important;
+			box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 0 2px rgba(255,255,255,0.1) !important;
+			z-index: 9999 !important;
 			opacity: 0;
+			visibility: hidden;
 			transform: translateY(20px) scale(0.95);
-			transition: opacity 0.3s ease, transform 0.3s ease;
+			transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
 			pointer-events: none;
-			overflow: hidden;
+			overflow: hidden !important;
 		}
 
 		.player-preview.active {
 			opacity: 1;
+			visibility: visible;
 			transform: translateY(0) scale(1);
 			pointer-events: auto;
 		}
 
 		.player-preview-header {
-			background: linear-gradient(135deg, #fbbf24, #f59e0b);
-			padding: 6px 10px;
-			display: flex;
-			align-items: center;
-			gap: 8px;
+			background: linear-gradient(135deg, #fbbf24, #f59e0b) !important;
+			padding: 6px 10px !important;
+			display: flex !important;
+			align-items: center !important;
+			gap: 8px !important;
+			height: auto !important;
+			width: 100% !important;
+			box-sizing: border-box !important;
 		}
 
 		.player-preview-country-flag {
-			width: 24px;
-			height: 16px;
-			border-radius: 2px;
-			object-fit: cover;
-			box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+			width: 24px !important;
+			height: 16px !important;
+			min-width: 24px !important;
+			border-radius: 2px !important;
+			object-fit: cover !important;
+			box-shadow: 0 1px 3px rgba(0,0,0,0.3) !important;
 		}
 
 		.player-preview-country {
-			color: #1a365d;
-			font-size: 11px;
-			font-weight: bold;
-			text-transform: uppercase;
-			letter-spacing: 0.5px;
+			color: #1a365d !important;
+			font-size: 11px !important;
+			font-weight: bold !important;
+			text-transform: uppercase !important;
+			letter-spacing: 0.5px !important;
 		}
 
 		.player-preview-image-container {
-			position: relative;
-			width: 100%;
-			height: 200px;
-			background: linear-gradient(180deg, #1e40af 0%, #3b82f6 50%, #60a5fa 100%);
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			overflow: hidden;
+			position: relative !important;
+			width: 100% !important;
+			height: 180px !important;
+			max-height: 180px !important;
+			background: linear-gradient(180deg, #1e40af 0%, #3b82f6 50%, #60a5fa 100%) !important;
+			display: flex !important;
+			align-items: center !important;
+			justify-content: center !important;
+			overflow: hidden !important;
 		}
 
 		.player-preview-image-container::before {
@@ -405,83 +415,88 @@
 			right: 0;
 			height: 40%;
 			background: linear-gradient(to top, rgba(0,0,0,0.3), transparent);
-		}
-
-		.player-preview-image {
-			width: 100%;
-			height: 100%;
-			object-fit: contain;
-			position: relative;
 			z-index: 1;
 		}
 
+		.player-preview-image {
+			width: 100% !important;
+			height: 100% !important;
+			max-width: 100% !important;
+			max-height: 100% !important;
+			object-fit: contain !important;
+			position: relative !important;
+			z-index: 0 !important;
+		}
+
 		.player-preview-info {
-			background: #1e3a5f;
-			padding: 10px;
-			text-align: center;
+			background: #1e3a5f !important;
+			padding: 10px !important;
+			text-align: center !important;
+			width: 100% !important;
+			box-sizing: border-box !important;
 		}
 
 		.player-preview-number {
-			display: inline-block;
-			background: #fbbf24;
-			color: #1a365d;
-			font-size: 12px;
-			font-weight: bold;
-			padding: 2px 8px;
-			border-radius: 3px;
-			margin-bottom: 6px;
+			display: inline-block !important;
+			background: #fbbf24 !important;
+			color: #1a365d !important;
+			font-size: 12px !important;
+			font-weight: bold !important;
+			padding: 2px 8px !important;
+			border-radius: 3px !important;
+			margin-bottom: 6px !important;
 		}
 
 		.player-preview-name {
-			color: white;
-			font-size: 14px;
-			font-weight: bold;
-			text-transform: uppercase;
-			letter-spacing: 0.5px;
-			margin-bottom: 4px;
-			text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+			color: white !important;
+			font-size: 14px !important;
+			font-weight: bold !important;
+			text-transform: uppercase !important;
+			letter-spacing: 0.5px !important;
+			margin-bottom: 4px !important;
+			text-shadow: 0 1px 2px rgba(0,0,0,0.3) !important;
 		}
 
 		.player-preview-team {
-			color: rgba(255,255,255,0.7);
-			font-size: 10px;
-			text-transform: uppercase;
-			letter-spacing: 1px;
+			color: rgba(255,255,255,0.7) !important;
+			font-size: 10px !important;
+			text-transform: uppercase !important;
+			letter-spacing: 1px !important;
 		}
 
 		.player-preview-badge {
-			position: absolute;
-			top: 8px;
-			right: 8px;
-			width: 40px;
-			height: 40px;
-			background: white;
-			border-radius: 50%;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-			z-index: 2;
+			position: absolute !important;
+			top: 8px !important;
+			right: 8px !important;
+			width: 32px !important;
+			height: 32px !important;
+			background: white !important;
+			border-radius: 50% !important;
+			display: flex !important;
+			align-items: center !important;
+			justify-content: center !important;
+			box-shadow: 0 2px 8px rgba(0,0,0,0.3) !important;
+			z-index: 2 !important;
 		}
 
 		.player-preview-badge img {
-			width: 28px;
-			height: 28px;
-			object-fit: contain;
+			width: 22px !important;
+			height: 22px !important;
+			object-fit: contain !important;
 		}
 
 		.player-preview-panini {
-			position: absolute;
-			bottom: 8px;
-			left: 8px;
-			background: rgba(0,0,0,0.6);
-			color: white;
-			font-size: 8px;
-			font-weight: bold;
-			padding: 3px 6px;
-			border-radius: 3px;
-			letter-spacing: 1px;
-			z-index: 2;
+			position: absolute !important;
+			bottom: 8px !important;
+			left: 8px !important;
+			background: rgba(0,0,0,0.6) !important;
+			color: white !important;
+			font-size: 8px !important;
+			font-weight: bold !important;
+			padding: 3px 6px !important;
+			border-radius: 3px !important;
+			letter-spacing: 1px !important;
+			z-index: 2 !important;
 		}
 
 		.stats {
